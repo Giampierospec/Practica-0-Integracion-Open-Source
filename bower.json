@@ -1,0 +1,15 @@
+{
+  "name": "integracion-de-aplicaciones-open-source",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Giampiero Specogna <giampi_12@hotmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.2.1",
+    "jquery": "^3.3.1"
+  }
+}

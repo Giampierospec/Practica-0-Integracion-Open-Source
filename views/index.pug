@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  
+  .row
+    .col-8.offset-2
+      .card
+        .card-body
+          form(action="/uploadArchive",enctype="multipart/form-data", method="POST")
+              #header
+                h2 Encabezado
+                hr
+                .form-group.row
+                  label(for="tipoRegistroE").col-sm-2.col-form-label Tipo Registro
+                  .col-sm-10
+                    input(type="text",name="tipoRegistroE", maxlength="1", required="true").form-control
+                .form-group.row
+                  label(for="RNCE").col-sm-2.col-form-label RNC
+                  .col-sm-10
+                    input(type="text",name="RNCE", required="true" maxlength="11").form-control
+                .form-group.row
+                  label(for="EntidadE").col-sm-2.col-form-label Entidad
+                  .col-sm-10
+                    input(type="text",name="EntidadE", required="true" maxlength="11").form-control
+                .form-group.row
+                  label(for="FechaTrE").col-sm-2.col-form-label Fecha Transmisión
+                  .col-sm-10
+                    input(type="date",name="FechaTrE", required="true").form-control
+                .form-group.row
+                  label(for="FechaE").col-sm-2.col-form-label Fecha
+                  .col-sm-10
+                    input(type="date",name="FechaE", required="true").form-control
+                .form-group.row
+                  label(for="CuentaE").col-sm-2.col-form-label No Cuenta
+                  .col-sm-10
+                    input(type="text",name="CuentaE", required="true", maxLength="24").form-control
+                hr
+              #detalle
+                h2 Detalle
+                hr
+
+                div
+                  button(type="submit").btn.btn-success Generar
+
