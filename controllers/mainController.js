@@ -23,7 +23,13 @@ let Ctrl = (()=>{
         });
      };
      let readFile = (req,res,next)=>{
-        
+         console.log(req.file.buffer.toString());
+        ArchiveUtil.readAndParseFileUtil(req.file.buffer.toString(),(err,obj)=>{
+            if(err)
+                res.status(400).send(err);
+            else
+            res.status(200).send(obj);
+        });
      };
      let downloadArchive = (req,res,next)=>{
        res.sendFile(path.resolve(__basedir, `archives/${req.query.ar}`));

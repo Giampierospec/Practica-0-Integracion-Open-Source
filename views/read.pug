@@ -11,17 +11,17 @@ block content
                             .form-group.row
                                 label(for="input").col-sm-2.col-form-label Archivo txt
                                 .col-sm-10
-                                    input(type="file",name="archtxt", accept=".txt").form-control
+                                    input(type="file",name="archtxt", accept=".txt",id="fl").form-control
                             div
-                                button(type="button").btn.btn-success Leer
+                                button(type="button" v-on:click="sendFile").btn.btn-success Leer
         div(v-if="msg")
-        .row
-            .col-sm-8.offset-2
-                .card
-                    .card-body
-                        h2 Información recompilada
-                        h3 RNC: {msg.rnc}
-                        h3 
+            .row
+                .col-sm-8.offset-2
+                    .card
+                        .card-body
+                            h2 Información recompilada
+                            h3 RNC: {{msg.rnc}}
+                            h3 
 
 block scripts
     script(src="/js/readFile/readFile.js")

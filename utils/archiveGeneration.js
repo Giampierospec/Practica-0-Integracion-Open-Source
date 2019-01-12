@@ -34,8 +34,18 @@ let generateArchiveUtil = (body,callback)=>{
             });
     // strm.end();
 };
+/**
+ * metodo para parsear el archivo y leerlo
+ * @param {Object} body 
+ * @param {(err:string,obj:Object)} callback 
+ */
+let readAndParseFileUtil = (body,callback)=>{
+    console.log(body.split('\n'));
+    callback(null,body);
+};
 return {
-    generateArchiveUtil
+    generateArchiveUtil,
+    readAndParseFileUtil
 }
 })();
 
