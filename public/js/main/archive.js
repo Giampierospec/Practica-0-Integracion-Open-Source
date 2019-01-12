@@ -16,7 +16,18 @@
                     cedula:0,
                     salario:0,
                     cuentaEmpleado:0
-                }]
+                }],
+                errors:[]
+            }
+        },
+        computed:{
+            vd(){
+                return {
+                    cedula: 11,
+                    rnc: 9,
+                    cuenta: 10,
+                    cuentaEmpleado: 10
+                };
             }
         },
         methods:{
@@ -35,13 +46,44 @@
                     ev.target.setAttribute("class","btn disabled");
             },
             generateArchive(){
-                axios.post('/',this.archiveModel)
-                     .then((d)=>{
-                         location.reload();
-                     })
-                    .catch((e)=>{
-                        console.log(e);
+                this.errors = [];
+                this.checkObj(this.archiveModel);
+                if(!this.errors.length)
+                {
+                    axios.post('/archive', this.archiveModel)
+                        .then((d) => {
+                            swal({
+                                title:'Procesado correctamente',
+                                text:"El archivo fue generado exitosamente",
+                                icon:"success"
+                            }).then(()=>{
+                                window.open(`/downloadArchive?ar=${d.data}`, "_blank");
+                            });
+                        })
+                        .catch((e) => {
+                            console.log(e);
+                        });
+                }
+                else
+                    swal({
+                        title: "Los siguientes campos tienen los siguientes errores",
+                        text: this.errors.join('\n'),
+                        icon:"error"
                     });
+            },
+            checkLength(ev,length = 11){
+                if(ev.target.value.length === length)
+                    ev.preventDefault();
+            },
+            checkObj(obj){
+                Object.keys(obj).forEach((k)=>{
+                    if (typeof obj[k] === 'object')
+                        this.checkObj(obj[k]);
+                    else if(!obj[k])
+                        this.errors.push(`El campo ${k} está vacío`);
+                     else if (obj[k].length !== this.vd[k])
+                         this.errors.push(`El campo ${k} no tiene la longitud esperada de ${this.vd[k]}`)
+                });
             }
         }
     });

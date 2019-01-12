@@ -3,7 +3,7 @@ extends layout
 block content
   #app
     .row
-      .col-8.offset-2
+      .col-sm-8.offset-2
         .card
           .card-body
             form(action="", method="POST")
@@ -13,7 +13,7 @@ block content
                   .form-group.row
                     label(for="RNCE").col-sm-2.col-form-label RNC
                     .col-sm-10
-                      input(type="number",name="RNCE", required="true",v-model="archiveModel.header.rnc").form-control
+                      input(type="number",name="RNCE", required="true",v-model="archiveModel.header.rnc", v-on:keypress="checkLength($event,9)").form-control
                   .form-group.row
                     label(for="EntidadE").col-sm-2.col-form-label Entidad
                     .col-sm-10
@@ -29,7 +29,7 @@ block content
                   .form-group.row
                     label(for="CuentaE").col-sm-2.col-form-label No Cuenta
                     .col-sm-10
-                      input(type="number",name="CuentaE", required="true",v-model="archiveModel.header.cuenta").form-control
+                      input(type="number",name="CuentaE", required="true",v-model="archiveModel.header.cuenta",v-on:keypress="checkLength($event,10)").form-control
                   hr
                 #detalle
                   h2 Detalle
@@ -44,7 +44,7 @@ block content
                     .form-group.row
                       label(for="CedulaDt").col-sm-2.col-form-label Cédula
                       .col-sm-10
-                        input(type="number",name="CedulaDt", required="true",v-model="dt.cedula").form-control
+                        input(type="number",name="CedulaDt", required="true",v-model="dt.cedula", v-on:keypress="checkLength($event,11)").form-control
                     .form-group.row
                       label(for="salarioDt").col-sm-2.col-form-label Salario
                       .col-sm-10
@@ -52,7 +52,7 @@ block content
                     .form-group.row
                       label(for="salarioDt").col-sm-2.col-form-label Cuenta Empleado
                       .col-sm-10
-                        input(type="number",name="salarioDt", required="true",v-model="dt.cuentaEmpleado").form-control
+                        input(type="number",name="salarioDt", required="true",v-model="dt.cuentaEmpleado", v-on:keypress="checkLength($event,10)").form-control
                     hr
                     br
                     
