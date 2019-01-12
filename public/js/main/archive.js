@@ -1,3 +1,5 @@
+
+
 (()=>{
     new Vue({
         el:'#app',
@@ -31,6 +33,15 @@
                     this.archiveModel.detalle.pop();
                 else
                     ev.target.setAttribute("class","btn disabled");
+            },
+            generateArchive(){
+                axios.post('/',this.archiveModel)
+                     .then((d)=>{
+                         location.reload();
+                     })
+                    .catch((e)=>{
+                        console.log(e);
+                    });
             }
         }
     });
