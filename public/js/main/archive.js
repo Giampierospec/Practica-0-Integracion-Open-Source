@@ -16,9 +16,9 @@
                     cedula:0,
                     salario:0,
                     cuentaEmpleado:0
-                }],
-                errors:[]
-            }
+                }]
+            },
+             errors: []
         },
         computed:{
             vd(){
@@ -81,7 +81,7 @@
                         this.checkObj(obj[k]);
                     else if(!obj[k])
                         this.errors.push(`El campo ${k} está vacío`);
-                     else if (obj[k].length !== this.vd[k])
+                     else if (this.vd[k] && obj[k].length !== this.vd[k])
                          this.errors.push(`El campo ${k} no tiene la longitud esperada de ${this.vd[k]}`)
                 });
             }

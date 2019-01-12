@@ -1,6 +1,19 @@
 const fs = require('fs');
 const {mainDir} = require('../app');
 const path = require('path');
+let archiveModel = {
+    header: {
+        rnc: 0,
+        entidad: "",
+        fechaTr: "",
+        fecha: "",
+        cuenta: 0
+    },
+    detalle: [],
+    sumario: {
+        cantidadRegistros:0
+    }
+};
 /**
  * convertDate
  * @param {string} str 
@@ -40,8 +53,32 @@ let generateArchiveUtil = (body,callback)=>{
  * @param {(err:string,obj:Object)} callback 
  */
 let readAndParseFileUtil = (body,callback)=>{
-    console.log(body.split('\n'));
-    callback(null,body);
+    let archiveLines = body.split('\n');
+    let header = archiveLines[0].split(' ');
+    let footer = archiveLines[archiveLines.length -1];
+    archiveModel.header = {
+        rnc: header[0].replace('E',""),
+        entidad: header[1],
+        fechaTr: header[2],
+        fecha: header[3],
+        cuenta: header[4]
+    };
+    archiveLines.forEach((x,index)=>{
+        if (index !== 0 && index !== archiveLines.length - 1){
+        let detail = x.split(' ');
+        archiveModel.detalle.push({
+            cedula: detail[0].replace("D",""),
+            salario: detail[1],
+            cuentaEmpleado: detail[2]
+        });
+    }
+    });
+    archiveModel.sumario = {
+        cantidadRegistros: footer.replace('S','')
+    };
+
+
+    callback(null,archiveModel);
 };
 return {
     generateArchiveUtil,

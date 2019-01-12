@@ -19,9 +19,32 @@ block content
                 .col-sm-8.offset-2
                     .card
                         .card-body
-                            h2 Información recompilada
-                            h3 RNC: {{msg.rnc}}
-                            h3 
+                            h2 Encabezado
+                            hr
+                            br
+                            h3 RNC: {{msg.header.rnc}}
+                            h3 Entidad: {{msg.header.entidad}}
+                            h3 Fecha Transmisión: {{msg.header.fechaTr}}
+                            h3 Fecha Envío: {{msg.header.fecha}}
+                            h3 Cuenta: {{msg.header.cuenta}}
+                            hr
+                            br
+                            h2 Detalle
+                            hr
+                            br
+                            div(v-for="detalle in msg.detalle")
+                                h3 Cédula: {{detalle.cedula}}
+                                h3 Salario:  {{detalle.salario}}
+                                h3 Cuenta Empleado: {{detalle.cuentaEmpleado}}
+                                hr
+                                br
+                            hr
+                            br
+                            h2 Sumario
+                            hr
+                            br
+                            h3 Cantidad Registros: {{msg.sumario.cantidadRegistros}}
+                            hr
 
 block scripts
     script(src="/js/readFile/readFile.js")
