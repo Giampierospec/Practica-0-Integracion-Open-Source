@@ -1,4 +1,5 @@
 const {ArchiveUtil} = require('../utils/archiveGeneration');
+const {ValidationUtil} = require('../utils/validationUtil');
 
 const path = require('path');
 let Ctrl = (()=>{
@@ -8,13 +9,18 @@ let Ctrl = (()=>{
          });
      };
      let generateArchive = (req, res, next)=>{
-        ArchiveUtil.generateArchiveUtil(req.body,(err,txt)=>{
-            console.log(txt);
-            if(!err)
-                res.status(200).send(txt);
+        ValidationUtil.validate(req.body.detalle,(e)=>{
+            if(e)
+                return res.status(400).send(e);
             else
-                res.status(400).send(err);
-        });
+                ArchiveUtil.generateArchiveUtil(req.body, (err, txt) => {
+                    console.log(txt);
+                    if (!err)
+                        res.status(200).send(txt);
+                    else
+                        res.status(400).send("");
+                });
+        })
         
      };
      let renderReadFileView = (req,res,next)=>{

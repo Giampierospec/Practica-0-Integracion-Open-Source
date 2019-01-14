@@ -61,7 +61,15 @@
                             });
                         })
                         .catch((e) => {
-                            console.log(e);
+                            if(e.response.data)
+                               {
+                                    swal({
+                                        title: "Ocurrió un Error",
+                                        text: e.response.data,
+                                        icon: "error"
+                                    });
+                                    
+                               }
                         });
                 }
                 else
