@@ -15,7 +15,6 @@
                         'Content-Type': 'multipart/form-data'
                     }
                 }).then((obj)=>{
-                    console.log(obj.data);
                    this.msg = obj.data;
                 }).catch((err)=> console.log(err));
             }

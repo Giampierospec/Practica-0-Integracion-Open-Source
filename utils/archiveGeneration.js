@@ -38,7 +38,6 @@ let generateArchiveUtil = (body,callback)=>{
     flStr += `S${body.detalle.length}`;
     let fileName =  `unapec-${new Date().getTime()}.txt`
     let pth = path.resolve(__basedir, `archives/${fileName}`);
-    console.log(pth);
             fs.writeFile(pth, flStr, (err) => {
                 if (err) 
                     return callback(err);
