@@ -7,7 +7,11 @@ html
     script(src="/lib/bootstrap/dist/js/bootstrap.min.js")
     link(rel='stylesheet', href='/css/style.css')
   body
-    block content
+    .sidenav
+      a(href="/") Generar Archivo
+      a(href="/readArchive") Leer Archivo
+    .main
+      block content
     script(src="/js/sw/sweetalert.min.js")
     script(src="/lib/axios/dist/axios.min.js")
     script(src="/lib/vue/dist/vue.min.js")

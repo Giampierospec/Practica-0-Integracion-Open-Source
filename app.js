@@ -1,3 +1,5 @@
+require('./config/config');
+require('./db/mongoose');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
