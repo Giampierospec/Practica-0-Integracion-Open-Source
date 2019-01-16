@@ -1,5 +1,5 @@
 const fs = require('fs');
-const {mainDir} = require('../app');
+const {DbUtil} = require('../utils/archiveUtil');
 const path = require('path');
 let archiveModel = {
     header: {
@@ -76,9 +76,15 @@ let readAndParseFileUtil = (body,callback)=>{
     archiveModel.sumario = {
         cantidadRegistros: footer.replace('S','')
     };
+    DbUtil.saveObj(archiveModel,(err)=>{
+        if(err)
+            callback(err);
+        else
+        callback(null, archiveModel);
+    });
 
 
-    callback(null,archiveModel);
+    
 };
 return {
     generateArchiveUtil,

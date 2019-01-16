@@ -29,7 +29,6 @@ let Ctrl = (()=>{
         });
      };
      let readFile = (req,res,next)=>{
-         console.log(req.file.buffer.toString());
         ArchiveUtil.readAndParseFileUtil(req.file.buffer.toString(),(err,obj)=>{
             if(err)
                 res.status(400).send(err);
